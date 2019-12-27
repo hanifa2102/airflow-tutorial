@@ -64,4 +64,11 @@ t3 = BashOperator(
     dag=dag,
 )
 
+t4 = BashOperator(
+        task_id="get_my_variable",
+        bash_command='echo check it out "{0}"'.format(dag_config['var1']),
+        dag=dag
+)
+
 start >> [t1, t2, t3]
+t1 >> t4
